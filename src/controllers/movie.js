@@ -26,7 +26,7 @@ module.exports = {
         `
     */
 
-    const data = await res.getModelList(Movie);
+   // const data = await res.getModelList(Movie);
 
     res.status(200).send({
       error: false,

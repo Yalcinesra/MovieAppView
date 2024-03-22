@@ -26,8 +26,8 @@ module.exports = {
         `
     */
 
-     const data = await res.getModelList(Movie);
-    // const data = await Movie.find()
+    // const data = await res.getModelList(Movie);
+     const data = await Movie.find()
     console.log(data);
     // res.status(200).send({
     //   error: false,
