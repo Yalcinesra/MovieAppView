@@ -82,28 +82,28 @@ app.use(require('./src/middlewares/findSearchSortPage'))
 // })
 
 // // auth:
-// app.use("/auth", require("./src/routes/auth"));
+app.use("/auth", require("./src/routes/auth"));
 
-// // token:
-// app.use("/tokens", require("./src/routes/token"));
+// token:
+app.use("/tokens", require("./src/routes/token"));
 
-// // user:
-// app.use("/users", require("./src/routes/user"));
+// user:
+app.use("/users", require("./src/routes/user"));
 
-// // category:
-// app.use("/categories", require("./src/routes/category"));
+// category:
+app.use("/categories", require("./src/routes/category"));
 
-// // movie:
-// app.use("/movies", require("./src/routes/movie"));
+// movie:
+app.use("/movies", require("./src/routes/movie"));
 
-// // comment:
-// app.use("/comments", require("./src/routes/comment"));
+// comment:
+app.use("/comments", require("./src/routes/comment"));
 
-// // document:
-// app.use("/documents", require("./src/routes/document"));
+// document:
+app.use("/documents", require("./src/routes/document"));
 
-// //postLike:
-// app.use("/movies/:id/postLike", require("./src/routes/movie"));
+//postLike:
+app.use("/movies/:id/postLike", require("./src/routes/movie"));
 
 /* ------------------------------------------------------- */
 
@@ -115,4 +115,4 @@ app.listen(PORT, () => console.log('http://127.0.0.1:' + PORT))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-//require('./src/helpers/sync')()
+require('./src/helpers/sync')()
