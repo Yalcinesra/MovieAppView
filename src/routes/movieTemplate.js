@@ -24,7 +24,7 @@ const permission = require('../middlewares/permissions')
 
 //     router.post('/:id/postLike', movie.postLike);
 
-router.get('/',movieTemplate.list) // LIST
+router.get('/',movieTemplate.list) // 
 
 router.get('/create',movieTemplate.create) // CREATE
 router.post('/create',movieTemplate.create) // CREATE

@@ -135,7 +135,7 @@ module.exports = {
           message: "Movie not found.",
         });
       }
-      console.log(movie);
+     // console.log(movie);
       // // Check if the user has already liked the movie
       if (movie.likes.includes(createdId)) {
         return res.status(400).send({

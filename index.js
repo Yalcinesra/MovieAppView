@@ -29,6 +29,7 @@ const PORT = process.env?.PORT || 8000
 require('express-async-errors')
 
 /* ------------------------------------------------------- */
+require('@fortawesome/free-solid-svg-icons')
 // Configrations:
 
 // Connect to DB:
@@ -41,15 +42,15 @@ dbConnection()
 app.use(express.json())
 
 app.use(express.urlencoded({extended:true} ))
-app.all('/',(req,res)=>{
-    // res.render('index.ejs')
-    res.render('index')
+// app.all('/',(req,res)=>{
+//     // res.render('index.ejs')
+//     res.render('index')
 
 
-})
+// })
 
 app.use('/api',require('./src/routes/movie'))
-app.use('/view',require('./src/routes/movieTemplate'))
+app.use('/',require('./src/routes/movieTemplate'))
 
 // Check Token:
 app.use(require("./src/middlewares/authentication"));
