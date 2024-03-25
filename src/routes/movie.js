@@ -21,6 +21,7 @@ router.route('/:id')
     .patch(permission.isAdmin,movie.update)
     .delete(permission.isAdmin,movie.delete)
     
+    
 
     router.post('/:id/postLike', movie.postLike);
 

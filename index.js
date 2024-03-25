@@ -30,6 +30,8 @@ require('express-async-errors')
 
 /* ------------------------------------------------------- */
 require('@fortawesome/free-solid-svg-icons')
+require('./node_modules/@fortawesome/free-solid-svg-icons')
+
 // Configrations:
 
 // Connect to DB:

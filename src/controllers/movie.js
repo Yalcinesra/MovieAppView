@@ -7,6 +7,7 @@ const Movie = require("../models/movie");
 
 module.exports = {
   list: async (req, res) => {
+    console.log("list");
     /*
         #swagger.tags = ["Movies"]
         #swagger.summary = "List Movies"
@@ -63,17 +64,40 @@ module.exports = {
   },
 
   read: async (req, res) => {
+    console.log("burdayim");
     /*
         #swagger.tags = ["Movies"]
         #swagger.summary = "Get Single Movie"
     */
-
-    const data = await Movie.findOne({ _id: req.params.id });
-
-    res.status(200).send({
-      error: false,
-      data,
-    });
+        try {
+          // Belirtilen ID'ye sahip filmi bul
+          const data = await Movie.findOne({ _id: req.params.id });
+  
+          if (!data) {
+              return res.status(404).send({
+                  error: true,
+                  message: "Movie not found.",
+              });
+          }
+  
+          // countOfVisitors alanını artır
+          data.countOfVisitors++;
+  console.log(countOfVisitors);
+          // Güncellenmiş film verisini kaydet
+          await data.save();
+  
+          // Yanıt olarak güncellenmiş film verisini gönder
+          return res.status(200).send({
+              error: false,
+              data,
+          });
+      } catch (error) {
+          console.error("Error:", error);
+          return res.status(500).send({
+              error: true,
+              message: "Internal server error.",
+          });
+      }
   },
 
   update: async (req, res) => {
@@ -143,15 +167,15 @@ module.exports = {
           message: "User has already liked the movie.",
         });
       }
-
-      // Add the user to the likes array
+else{// Add the user to the likes array
       movie.likes.push(createdId);
       await movie.save();
 
       res.status(200).send({
         error: false,
         message: "Movie liked successfully.",
-      });
+      });}
+      
     } catch (error) {
       console.error(error);
       res.status(500).send({
