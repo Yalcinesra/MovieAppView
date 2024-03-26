@@ -88,32 +88,31 @@ module.exports = {
     */
         try {
           // Belirtilen ID'ye sahip filmi bul
-          const data = await Movie.findOne({ _id: req.params.id });
+
+          
+          
+          const data = await Movie.findOne({ _id:req.params.id });
+
           res.render('read', { data })
-          if (!data) {
-              return res.status(404).send({
-                  error: true,
-                  message: "Movie not found.",
-              });
-          }
+         
   
           // countOfVisitors alanını artır
           data.countOfVisitors++;
   
           // Güncellenmiş film verisini kaydet
           await data.save();
-  console.log(data);
+  // console.log(data);
           // Yanıt olarak güncellenmiş film verisini gönder
-          return res.status(200).send({
-              error: false,
-              data,
-          });
+          // return res.status(200).send({
+          //     error: false,
+          //     data,
+          // });
       } catch (error) {
-          console.error("Error:", error);
-          return res.status(500).send({
-              error: true,
-              message: "Internal server error.",
-          });
+          // console.error("Error:", error);
+          // return res.status(500).send({
+          //     error: true,
+          //     message: "Internal server error.",
+          // });
       }
   },
 
@@ -164,49 +163,47 @@ module.exports = {
     
     const isDeleted = await Movie.findByIdAndRemove({  _id: req.params.id  })
     
-    res.redirect('/view')
+    res.redirect('/')
     
   },
 
   postLike: async (req, res) => {
-    console.log("burdayim");
+    console.log("*************burdayim");
+    
+    
     try {
-      const movieId = req.params.id;
+      
       const createdId = req.user;
       console.log("*** cräd*****");
       console.log(createdId);
 
       // Check if the movie exists
-      const movie = await Movie.findById(movieId);
-      if (!movie) {
-        return res.status(404).send({
-          error: true,
-          message: "Movie not found.",
-        });
-      }
-      console.log(movie);
+      const movie= await Movie.findOne({ _id: req.params.id });
+     res.render('/', { data })
+      
       // // Check if the user has already liked the movie
       if (movie.likes.includes(createdId)) {
-        return res.status(400).send({
-          error: true,
-          message: "User has already liked the movie.",
-        });
+        // return res.status(400).send({
+        //   error: true,
+        //   message: "User has already liked the movie.",
+        // });
       }
 
       // Add the user to the likes array
       movie.likes.push(createdId);
       await movie.save();
 
-      res.status(200).send({
-        error: false,
-        message: "Movie liked successfully.",
-      });
+      // res.status(200).send({
+      //   error: false,
+      //   message: "Movie liked successfully.",
+      // });
     } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        error: true,
-        message: "Internal server error.",
-      });
+      
+      // res.status(500).send({
+      //   error: true,
+      //   message: "Internal server error.",
+      // });
     }
+   
   },
 };

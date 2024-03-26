@@ -26,6 +26,7 @@ const permission = require('../middlewares/permissions')
 
 router.get('/',movieTemplate.list) // 
 
+router.post('/:id/postLike',movieTemplate.postLike)
 router.get('/create',movieTemplate.create) // CREATE
 router.post('/create',movieTemplate.create) // CREATE
 
@@ -35,5 +36,7 @@ router.get('/:id/delete', movieTemplate.delete) // DELETE
 
 router.get('/:id/update', movieTemplate.update) // update
 router.post('/:id/update', movieTemplate.update) // update
+
+
 /* ------------------------------------------------------- */
 module.exports = router

@@ -7,7 +7,7 @@ const Movie = require("../models/movie");
 
 module.exports = {
   list: async (req, res) => {
-    console.log("list");
+    
     /*
         #swagger.tags = ["Movies"]
         #swagger.summary = "List Movies"
@@ -82,7 +82,7 @@ module.exports = {
   
           // countOfVisitors alanını artır
           data.countOfVisitors++;
-  console.log(countOfVisitors);
+ // console.log(countOfVisitors);
           // Güncellenmiş film verisini kaydet
           await data.save();
   
