@@ -53,6 +53,7 @@ app.use(express.urlencoded({extended:true} ))
 
 app.use('/api',require('./src/routes/movie'))
 app.use('/',require('./src/routes/movieTemplate'))
+app.use('/',require('./src/routes/categoryTemplate'))
 
 // Check Token:
 app.use(require("./src/middlewares/authentication"));

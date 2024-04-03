@@ -6,6 +6,7 @@ const router = require('express').Router()
 /* ------------------------------------------------------- */
 
 const movieTemplate = require('../controllers/movieTemplate')
+
 const permission = require('../middlewares/permissions')
 
 // URL: /movies
@@ -26,16 +27,18 @@ const permission = require('../middlewares/permissions')
 
 router.get('/',movieTemplate.list) // 
 
-router.post('/:id/postLike',movieTemplate.postLike)
+
 router.get('/create',movieTemplate.create) // CREATE
 router.post('/create',movieTemplate.create) // CREATE
 
 router.get('/:id', movieTemplate.read) // READ
+// router.post('/:id/postLike',movieTemplate.postLike)
 
 router.get('/:id/delete', movieTemplate.delete) // DELETE
-
 router.get('/:id/update', movieTemplate.update) // update
 router.post('/:id/update', movieTemplate.update) // update
+
+router.post('/:id/postLike', movieTemplate.postLike);
 
 
 /* ------------------------------------------------------- */

@@ -1,9 +1,12 @@
-"use strict";
+"use strict"
 /* -------------------------------------------------------
     EXPRESS - Movie API
 ------------------------------------------------------- */
 
+
 const Movie = require("../models/movie");
+
+
 
 module.exports = {
   list: async (req, res) => {
@@ -75,7 +78,7 @@ module.exports = {
       console.log( " ********** ")
       console.log( req.body)
       const data = await Movie.create(req.body)
-      res.redirect('/view');
+      res.redirect('/');
 
   }
  
@@ -141,7 +144,7 @@ module.exports = {
     } else { // post
         console.log(req.body);
         await Movie.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect('/view');
+        res.redirect('/');
     }
 },
 
@@ -168,42 +171,42 @@ module.exports = {
   },
 
   postLike: async (req, res) => {
-    console.log("*************burdayim");
+   console.log("burdayiz**************");
     
-    
-    try {
+    // try {
       
-      const createdId = req.user;
-      console.log("*** cräd*****");
-      console.log(createdId);
-
-      // Check if the movie exists
-      const movie= await Movie.findOne({ _id: req.params.id });
-     res.render('/', { data })
+    //   // const createdId = req.user;
+     
       
-      // // Check if the user has already liked the movie
-      if (movie.likes.includes(createdId)) {
-        // return res.status(400).send({
-        //   error: true,
-        //   message: "User has already liked the movie.",
-        // });
-      }
 
-      // Add the user to the likes array
-      movie.likes.push(createdId);
-      await movie.save();
+    //   // Check if the movie exists
+    //   const movie= await Movie.findOne({ _id: req.params.id });
+    //  res.render('/', { data })
+    //    console.log(movie.id);
+    //   // // Check if the user has already liked the movie
+    //   if (movie.likes.includes(movie.id)) {
+    //     // return res.status(400).send({
+    //     //   error: true,
+    //     //   message: "User has already liked the movie.",
+    //     // });
+    //   }
 
-      // res.status(200).send({
-      //   error: false,
-      //   message: "Movie liked successfully.",
-      // });
-    } catch (error) {
+    //   // Add the user to the likes array
+    //   movie.likes.push(movie.id);
+    //   await movie.save();
+
+    //   // res.status(200).send({
+    //   //   error: false,
+    //   //   message: "Movie liked successfully.",
+    //   // });
+    // } catch (error) {
       
-      // res.status(500).send({
-      //   error: true,
-      //   message: "Internal server error.",
-      // });
-    }
+    //   // res.status(500).send({
+    //   //   error: true,
+    //   //   message: "Internal server error.",
+    //   // });
+    // }
    
   },
+  
 };

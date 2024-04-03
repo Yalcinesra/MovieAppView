@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.0",
     "redoc-express": "^2.1.0",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "tinymce": "^7.0.0"
   }
 }
