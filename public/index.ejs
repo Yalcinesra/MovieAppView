@@ -1,7 +1,7 @@
 <%- include('partials/header') -%>
-<div class="bg-dark">
-  <div class="container  text-center">
-    <!-- <div class="nav-scroller py-1 mb-3 border-bottom">
+  <div class="bg-dark">
+    <div class="container  text-center">
+      <!-- <div class="nav-scroller py-1 mb-3 border-bottom">
       <nav class="nav nav-underline justify-content-between">
        
        <%# category.map((item)=>{%>
@@ -12,49 +12,54 @@
       <%# }) %>
       </nav>
     </div> -->
-    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-col-sm-1 g-2 ">
+      <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-col-sm-1 g-2 ">
 
-      <%data.map((data)=>{%>
-        <div class="col ">
-          <div class="card m-3" style="width:18rem; height: 38rem;">
+        <%data.map((data)=>{%>
+          <div class="col ">
+            <div class="card m-3" style="width:18rem; height: 38rem;">
 
-            <img src=<%=data.image %> style=" height: 25rem;" class="card-img-top" alt="...">
-            <div class="card-body">
+              <img src=<%=data.image %> style=" height: 25rem;" class="card-img-top" alt="...">
+              <div class="card-body">
 
-              <h3 class="card-title m-1 mb-2">
-                <%= data.name %>
-              </h3>
+                <h3 class="card-title m-1 mb-2">
+                  <%= data.name %>
+                </h3>
 
 
-              <p class="card-text">
-                <%= data.description.substring(0, 50) %> ... <a class="link" style=" text-decoration: none;"
-                    href="/<%= data.id %>"><span style="font-weight: bold;">Detail</span></a>
+                <p class="card-text">
+                  <%= data.description.substring(0, 50) %> ... <a class="link" style=" text-decoration: none;"
+                      href="/<%= data.id %>"><span style="font-weight: bold;">Detail</span></a>
 
-              </p>
-              <p>
-              
-              </p>
+                </p>
+                <p>
 
-            </div>
-            <div class="card-footer d-flex justify-content-between">
-              <div><i class="fas fa-light fa-eye"></i> <%= data?.countOfVisitors %> </div>
-              <div><a href="/<%=data.id%>/postLike"><i class="fas fa-light fa-heart"></i></a></div>
-              <div><%= data.point %></div>
-              
+                </p>
+
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <div><i class="fas fa-light fa-eye"></i>
+                  <%= data?.countOfVisitors %>
+                </div>
+                <!-- <div><a href="/<%=data.id%>/postLike"><i class="fas fa-light fa-heart"></i></a></div> -->
+                <div>
+                  <%= data.point %>
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
-        <% })%>
+          <% })%>
 
-<%- include('partials/pagination') -%>
+            <%- include('partials/pagination') -%>
+      </div>
+
     </div>
-  
-  </div>
- 
-</div>
-</div>
-</div>
-<!-- content end -->
 
- <div class="mt-4">
-  <%- include('partials/footer') -%></div>
+  </div>
+  </div>
+  </div>
+  <!-- content end -->
+
+  <div class="mt-4">
+    <%- include('partials/footer') -%>
+  </div>
