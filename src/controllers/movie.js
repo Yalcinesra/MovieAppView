@@ -142,46 +142,57 @@ module.exports = {
       data,
     });
   },
+//! --------------------------------- LIKES --------------------------------- */
 
-  postLike: async (req, res) => {
-    console.log("burdayim");
-    try {
-      const movieId = req.params.id;
-      const createdId = req.user;
-      console.log("*** cräd*****");
-      console.log(createdId);
+  //! GET
+  listLike: async (req, res) => {
+    /*
+        #swagger.tags = ["movie"]
+        #swagger.summary = "Get Like Info"
+    */
 
-      // Check if the movie exists
-      const movie = await Movie.findById(movieId);
-      if (!movie) {
-        return res.status(404).send({
-          error: true,
-          message: "Movie not found.",
-        });
-      }
-     // console.log(movie);
-      // // Check if the user has already liked the movie
-      if (movie.likes.includes(createdId)) {
-        return res.status(400).send({
-          error: true,
-          message: "User has already liked the movie.",
-        });
-      }
-else{// Add the user to the likes array
-      movie.likes.push(createdId);
-      await movie.save();
+    const userId = req.user?.id;
 
-      res.status(200).send({
-        error: false,
-        message: "Movie liked successfully.",
-      });}
-      
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        error: true,
-        message: "Internal server error.",
-      });
+    const data = await Movie.findOne(
+      { _id: req.params.id },
+      { _id: 0, likes: 1 }
+    );
+
+    res.status(200).send({
+      error: false,
+      didUserLike: data.likes.includes(userId),
+      countOfLikes: data.likes.length,
+    });
+  },
+
+  //! POST
+  createLike: async (req, res) => {
+    /*
+        #swagger.tags = ["movies"]
+        #swagger.summary = "Add/Remove Like"
+        #swagger.parameters['body'] = {
+            in: 'body',
+            required: true,
+            schema: {}
+        }
+    */
+
+    const userId = req.user?.id;
+
+    const data = await Movie.findOne({ _id: req.params.id });
+
+    if (data.likes.includes(userId)) {
+      data.likes.pull(userId);
+    } else {
+      data.likes.push(userId);
     }
+    data.save();
+
+    res.status(202).send({
+      error: false,
+      didUserLike: data.likes.includes(userId),
+      countOfLikes: data.likes.length,
+    });
   },
 };
+

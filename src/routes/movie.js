@@ -23,8 +23,11 @@ router.route('/:id')
     
     
 
-    router.post('/:id/postLike', movie.postLike);
+    
+//? Blog Like Router
+router.route("/:id/getlike").get(movie.listLike);
 
+router.route("/:id/postlike").post( movie.createLike);
 
 /* ------------------------------------------------------- */
 module.exports = router

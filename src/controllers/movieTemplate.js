@@ -171,8 +171,9 @@ module.exports = {
   },
 
   postLike: async (req, res) => {
-   console.log("burdayiz**************");
-    
+   
+    const movie= await Movie.findOne({ _id: req.params.id });
+    res.redirect('/')
     // try {
       
     //   // const createdId = req.user;
